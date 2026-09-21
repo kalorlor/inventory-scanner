@@ -1,13 +1,52 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="apple-mobile-web-app-capable" content="yes"><title>EAN-13 Inventory Scanner v3.4.2</title>
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="apple-mobile-web-app-capable" content="yes"><title>EAN-13 Inventory Scanner v3.5</title>
 <style>
 :root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#111;background:#f3f4f6}*{box-sizing:border-box}body{margin:0}.wrap{max-width:1100px;margin:auto;padding:18px}.top{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.card{background:#fff;border-radius:18px;padding:16px;margin:14px 0;box-shadow:0 2px 14px #0000000d}.btn,label.btn{display:inline-block;border:0;border-radius:12px;padding:11px 15px;background:#111;color:white;font-size:15px;cursor:pointer}.btn.secondary{background:#e8e8ed;color:#111}.btn.danger{background:#fff0f0;color:#b00020}.hidden{display:none}#thumbs{display:flex;gap:8px;overflow:auto;padding:5px 0}.thumb{min-width:105px;max-width:105px;border:2px solid transparent;border-radius:12px;padding:4px;background:#f4f4f6;position:relative}.thumbDel{position:absolute;right:0;top:0;width:26px;height:26px;border:0;border-radius:50%;background:#d32f2f;color:#fff;font-weight:bold;z-index:2}.thumb.active{border-color:#111}.thumb img{width:95px;height:75px;object-fit:cover;border-radius:8px}.thumb span{display:block;font-size:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.stageWrap{overflow:auto;max-height:70vh;background:#222;border-radius:14px}.stage{position:relative;display:inline-block;line-height:0}.stage img{max-width:none;display:block}.mark{position:absolute;border:3px solid #00a86b;border-radius:7px;background:#00a86b18;line-height:1.2;min-width:34px;min-height:22px}.mark.bad{border-color:#d32f2f;background:#d32f2f18}.mark.manual{border-style:dashed;border-color:#2563eb;background:#2563eb18}.mark .tag{position:absolute;left:0;top:-25px;background:#111;color:white;padding:4px 6px;border-radius:6px;font-size:11px;white-space:nowrap}.mark .x{position:absolute;right:-12px;top:-12px;border:0;border-radius:50%;width:26px;height:26px;background:#d32f2f;color:white;font-weight:bold}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.hint{color:#666;font-size:13px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:800px){.grid{grid-template-columns:1fr}}table{width:100%;border-collapse:collapse}th,td{padding:9px;border-bottom:1px solid #eee;text-align:left}.codeInput{font-size:16px;padding:10px;border:1px solid #ccc;border-radius:10px;width:180px}.qty{width:70px;padding:8px}.rowBtns button{border:0;border-radius:8px;padding:7px 9px;margin-right:4px}.ok{color:#087f5b}.warn{color:#b26a00}#status{white-space:pre-wrap}.drop{border:2px dashed #bbb;border-radius:14px;padding:18px;text-align:center}.drop.drag{border-color:#111;background:#f6f6f6}
+
+.manualModal{position:fixed;inset:0;background:#0008;z-index:9999;display:flex;align-items:center;justify-content:center;padding:18px}
+.manualModal.hidden{display:none}.manualPanel{background:#fff;width:min(620px,100%);max-height:90vh;overflow:auto;border-radius:18px;padding:16px}
+.manualTabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.manualTab{border:0;border-radius:10px;padding:9px 12px;background:#e8e8ed}.manualTab.active{background:#111;color:#fff}
+.keypad{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-width:340px;margin:12px auto}.keypad button{font-size:24px;padding:16px;border:0;border-radius:12px;background:#eee}
+.searchResults{max-height:280px;overflow:auto;border:1px solid #eee;border-radius:12px}.searchItem{padding:11px;border-bottom:1px solid #eee;cursor:pointer}.searchItem:last-child{border-bottom:0}
+.camVideo{width:100%;max-height:48vh;background:#111;border-radius:12px}.manualBig{font-size:21px;width:100%;padding:12px;border:1px solid #bbb;border-radius:10px}
 </style></head><body><div class="wrap">
-<h1 style="font-size:25px;margin-bottom:4px">EAN-13 库存扫描器 v3.4.2</h1><div class="hint">ZXing-WASM 高精度识别 · 动态导入公司库存 Excel · 差异优先排序 · 可显示真实 UPC/EAN 条形码。所有数据仅在当前设备处理。</div>
+<h1 style="font-size:25px;margin-bottom:4px">EAN-13 库存扫描器 v3.5</h1><div class="hint">ZXing-WASM 高精度识别 · 动态导入公司库存 Excel · 差异优先排序 · 可显示真实 UPC/EAN 条形码。所有数据仅在当前设备处理。</div>
 <div class="card"><div class="top" style="justify-content:space-between"><div><b>📊 公司库存表</b><div class="hint" id="inventoryInfo">尚未导入库存表。支持 .xlsx / .xls；会自动寻找 EAN/UPC 与 In-Store Qty。</div></div><label class="btn">导入 / 更换 Excel<input class="hidden" id="inventoryFile" type="file" accept=".xlsx,.xls,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel"></label></div><div id="inventoryStats" style="margin-top:10px"></div></div>
 <div class="card"><div class="drop" id="drop"><div class="top" style="justify-content:center"><label class="btn">🖼️ 导入照片（可多选）<input class="hidden" id="files" type="file" accept="image/*" multiple></label><label class="btn secondary">📷 拍一张<input class="hidden" id="camera" type="file" accept="image/*" capture="environment"></label><button class="btn secondary" id="scanAll">扫描全部照片</button><button class="btn danger" id="clearAll">清空</button></div><div class="hint">也可以把多张图片拖到这里（电脑）。iPad 请用“导入照片”，在照片选择器里一次选多张。</div></div><div id="status">正在加载 ZXing-WASM 识别引擎…</div><button class="btn secondary" id="toggleDiag" style="margin-top:8px;font-size:12px;padding:7px 10px">显示诊断信息</button><div id="diag" style="margin-top:8px;font:12px ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre-wrap;background:#f7f7f8;border-radius:10px;padding:10px;display:none"></div><div id="thumbs"></div></div>
-<div class="grid"><div class="card"><b>当前图片</b><div class="toolbar"><button class="btn secondary" id="scanOne">重新扫描当前图片</button><button class="btn secondary" id="addManual">＋ 手动添加条码</button><button class="btn secondary" id="zoomOut">－</button><button class="btn secondary" id="zoomIn">＋</button></div><div class="hint">绿色框 = 库存表中找到；红色框 = 扫描成功但库存表找不到。点框右上角 × 可删除。漏扫可在右侧直接手动补录。</div><div class="stageWrap"><div class="stage" id="stage"><img id="mainImg"></div></div></div>
+<div class="grid"><div class="card"><b>当前图片</b><div class="toolbar"><button class="btn secondary" id="scanOne">重新扫描当前图片</button><button class="btn secondary" id="addManual">＋ 补漏</button><button class="btn secondary" id="zoomOut">－</button><button class="btn secondary" id="zoomIn">＋</button></div><div class="hint">绿色框 = 库存表中找到；红色框 = 扫描成功但库存表找不到。点框右上角 × 可删除。漏扫可在右侧直接手动补录。</div><div class="stageWrap"><div class="stage" id="stage"><img id="mainImg"></div></div></div>
 <div class="card"><div class="top" style="justify-content:space-between"><b id="resultTitle">当前图片扫描结果</b><div><button class="btn" id="viewCurrent">当前图片</button> <button class="btn secondary" id="viewAll">全部汇总</button></div></div><div class="toolbar"><input id="manualCode" class="codeInput" inputmode="numeric" maxlength="13" placeholder="输入12/13位 EAN/UPC"><button class="btn" id="addCode">添加</button><button class="btn secondary" id="copy">复制</button><button class="btn secondary" id="csv">导出 CSV</button></div><div class="toolbar" id="filters"><button class="btn" data-filter="all">全部</button><button class="btn secondary" data-filter="diff">仅差异</button><button class="btn secondary" data-filter="unmatched">未匹配</button></div><table><thead><tr><th>扫描 EAN</th><th>商品 / 条形码</th><th>In-Store</th><th>已扫</th><th>差异</th><th>状态</th><th>操作</th></tr></thead><tbody id="rows"></tbody></table><p id="summary"></p></div></div>
-<div class="card hint"><b>识别说明：</b>v3.4.2 默认隐藏诊断日志；需要排查识别率时可点“显示诊断信息”。使用 ZXing-C++ WebAssembly，不再依赖浏览器 BarcodeDetector。每张照片会进行原图 + 重叠分块多轮 EAN-13 扫描，并在原图标出位置。第一次使用需要联网加载约 1MB 的识别引擎；照片本身不会上传到服务器。</div>
+<div class="card hint"><b>识别说明：</b>v3.5 默认隐藏诊断日志；需要排查识别率时可点“显示诊断信息”。使用 ZXing-C++ WebAssembly，不再依赖浏览器 BarcodeDetector。每张照片会进行原图 + 重叠分块多轮 EAN-13 扫描，并在原图标出位置。第一次使用需要联网加载约 1MB 的识别引擎；照片本身不会上传到服务器。</div>
+
+<div id="manualModal" class="manualModal hidden">
+ <div class="manualPanel">
+  <div class="top" style="justify-content:space-between"><b>补漏模式</b><button class="btn secondary" id="closeManual">关闭</button></div>
+  <div class="manualTabs">
+   <button class="manualTab active" data-mtab="camera">📷 扫条码</button>
+   <button class="manualTab" data-mtab="search">🔎 搜库存</button>
+   <button class="manualTab" data-mtab="keypad">🔢 数字键盘</button>
+  </div>
+  <div id="mCamera">
+   <div class="hint">把一个漏扫的条形码放到镜头中央。识别成功后会直接 +1 到当前图片。</div>
+   <video id="manualVideo" class="camVideo" playsinline muted></video>
+   <div class="toolbar"><button class="btn" id="startCam">启动相机</button><button class="btn secondary" id="stopCam">停止</button></div>
+   <div id="camStatus" class="hint">相机尚未启动。</div>
+  </div>
+  <div id="mSearch" class="hidden">
+   <input id="stockSearch" class="manualBig" inputmode="search" placeholder="输入 EAN 后几位 / 型号 / 商品名称">
+   <div class="hint" style="margin:7px 0">点选正确商品后，会直接给当前图片 +1。</div>
+   <div id="stockSearchResults" class="searchResults"></div>
+  </div>
+  <div id="mKeypad" class="hidden">
+   <input id="keypadValue" class="manualBig" readonly placeholder="12/13位 EAN/UPC">
+   <div class="keypad" id="keypad">
+    <button>1</button><button>2</button><button>3</button>
+    <button>4</button><button>5</button><button>6</button>
+    <button>7</button><button>8</button><button>9</button>
+    <button data-k="back">←</button><button>0</button><button data-k="ok">✓</button>
+   </div>
+   <div id="keypadHint" class="hint"></div>
+  </div>
+ </div>
+</div>
 </div><script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script><script src="https://cdn.jsdelivr.net/npm/zxing-wasm@3.1.4/dist/iife/reader/index.js"></script><script>
 const $=id=>document.getElementById(id); let photos=[],current=-1,zoom=1,resultMode='current',resultFilter='all',diagVisible=false; let inventory=new Map(),inventoryFileName='',inventoryRows=0,inventoryTotal=0;
 function validEAN13(s){if(!/^\d{13}$/.test(s))return false;let sum=0;for(let i=0;i<12;i++)sum+=(+s[i])*(i%2?3:1);return (10-sum%10)%10===+s[12]}
@@ -123,7 +162,96 @@ async function scanPhoto(i){
 $('scanOne').onclick=async()=>{if(current<0)return alert('请先导入照片');$('status').textContent='正在扫描当前图片…';try{let n=await scanPhoto(current);$('status').textContent=`当前图片扫描完成：${n} 个 EAN-13 标记。请查看图片上的绿色框并手动修正。`;renderThumbs();showCurrent()}catch(e){$('status').textContent=e.message}}
 $('scanAll').onclick=async()=>{if(!photos.length)return alert('请先导入照片');try{for(let i=0;i<photos.length;i++){$('status').textContent=`正在扫描 ${i+1}/${photos.length}：${photos[i].name}`;await scanPhoto(i)}$('status').textContent=`全部扫描完成：${photos.length} 张。请逐张检查绿色标记。`;renderThumbs();showCurrent()}catch(e){$('status').textContent=e.message}}
 function addManualCode(code){let s=digits(code);if(s.length===12)s='0'+s;if(!validEAN13(s))return alert('请输入有效的 12 位 UPC 或 13 位 EAN-13');if(current<0)return alert('请先选择一张图片');let p=photos[current];p.dets.push({code:s,box:{x:p.bmp.width*.03,y:p.bmp.height*.03,width:p.bmp.width*.16,height:p.bmp.height*.06},manual:true});renderRows();renderMarks();renderThumbs();$('status').textContent='已手动补录 1 件，并计入当前图片和全部汇总。'}
-$('addCode').onclick=()=>{addManualCode($('manualCode').value.trim());$('manualCode').value=''};$('addManual').onclick=()=>{$('manualCode').focus();$('status').textContent='在右侧输入 12 位 UPC 或 13 位 EAN-13 后点“添加”。'};
+$('addCode').onclick=()=>{addManualCode($('manualCode').value.trim());$('manualCode').value=''};
+
+
+// v3.5 manual recovery workflow: camera scan, inventory search, custom keypad.
+let manualStream=null, manualTimer=null, manualBusy=false;
+function addOneToCurrent(code){
+  let raw=digits(code), c=raw.length===12?'0'+raw:raw;
+  if(!validEAN13(c))return false;
+  if(current<0){alert('请先选择一张图片');return false}
+  let p=photos[current], n=p.dets.filter(d=>d.code===c).length;
+  p.dets.push({code:c,box:{x:p.bmp.width*.04+(n%4)*18,y:p.bmp.height*.04+(n%4)*14,width:p.bmp.width*.14,height:p.bmp.height*.05},manual:true});
+  renderRows();renderMarks();renderThumbs();$('status').textContent=`补录成功：${c} +1`;
+  return true;
+}
+function openManual(){
+  if(current<0)return alert('请先选择一张图片');
+  $('manualModal').classList.remove('hidden'); switchManualTab('camera');
+}
+function stopManualCamera(){
+  if(manualTimer){clearInterval(manualTimer);manualTimer=null}
+  if(manualStream){manualStream.getTracks().forEach(t=>t.stop());manualStream=null}
+  $('manualVideo').srcObject=null;$('camStatus').textContent='相机已停止。';manualBusy=false;
+}
+function closeManual(){stopManualCamera();$('manualModal').classList.add('hidden')}
+function switchManualTab(name){
+  ['camera','search','keypad'].forEach(x=>{
+    $('m'+x[0].toUpperCase()+x.slice(1)).classList.toggle('hidden',x!==name);
+    document.querySelector(`[data-mtab="${x}"]`).classList.toggle('active',x===name);
+  });
+  if(name!=='camera')stopManualCamera();
+  if(name==='search'){$('stockSearch').focus();renderStockSearch()}
+}
+async function startManualCamera(){
+  try{
+    stopManualCamera();
+    manualStream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'},width:{ideal:1920},height:{ideal:1080}},audio:false});
+    const v=$('manualVideo');v.srcObject=manualStream;await v.play();$('camStatus').textContent='正在寻找条形码…';
+    const c=document.createElement('canvas'),ctx=c.getContext('2d',{willReadFrequently:true}),z=await zxingReady();
+    manualTimer=setInterval(async()=>{
+      if(manualBusy||!v.videoWidth)return;manualBusy=true;
+      try{
+        const scale=Math.min(1.8,1800/Math.max(v.videoWidth,v.videoHeight));
+        c.width=Math.round(v.videoWidth*scale);c.height=Math.round(v.videoHeight*scale);ctx.drawImage(v,0,0,c.width,c.height);
+        let arr=await z.readBarcodes(ctx.getImageData(0,0,c.width,c.height),{formats:['EAN13','UPCA'],tryHarder:true,maxNumberOfSymbols:4});
+        for(const r of (arr||[])){
+          let raw=digits(r.text);let code=raw.length===12?'0'+raw:raw;
+          if(validEAN13(code)){
+            if(addOneToCurrent(code)){$('camStatus').textContent=`✓ 已补录 ${code}`;if(navigator.vibrate)navigator.vibrate(80);stopManualCamera()}
+            break;
+          }
+        }
+      }catch(e){$('camStatus').textContent='识别中：'+(e.message||e)}
+      manualBusy=false;
+    },650);
+  }catch(e){$('camStatus').textContent='无法启动相机：'+(e.message||e)}
+}
+function uniqueInventoryRecords(){
+  const seen=new Set(),a=[];
+  for(const rec of inventory.values()){if(seen.has(rec))continue;seen.add(rec);a.push(rec)}
+  return a;
+}
+function renderStockSearch(){
+  const q=$('stockSearch').value.trim().toLowerCase(),box=$('stockSearchResults');box.innerHTML='';
+  if(!inventory.size){box.innerHTML='<div class="searchItem">请先导入公司库存 Excel。</div>';return}
+  if(!q){box.innerHTML='<div class="searchItem">输入 EAN 后几位、型号或商品名称开始搜索。</div>';return}
+  let hits=uniqueInventoryRecords().filter(r=>{
+    let hay=[r.raw,r.normalized,r.desc,r.size].join(' ').toLowerCase();
+    return hay.includes(q);
+  }).slice(0,30);
+  if(!hits.length){box.innerHTML='<div class="searchItem">没有找到库存商品。</div>';return}
+  for(const r of hits){
+    let d=document.createElement('div');d.className='searchItem';
+    d.innerHTML=`<b>${esc(r.raw)}</b> · In-Store ${r.inStore}<div>${esc(r.desc)} ${esc(r.size)}</div>`;
+    d.onclick=()=>{addOneToCurrent(r.raw);closeManual()};box.appendChild(d)
+  }
+}
+$('addManual').onclick=openManual;
+$('closeManual').onclick=closeManual;
+$('startCam').onclick=startManualCamera;$('stopCam').onclick=stopManualCamera;
+document.querySelectorAll('[data-mtab]').forEach(b=>b.onclick=()=>switchManualTab(b.dataset.mtab));
+$('stockSearch').oninput=renderStockSearch;
+$('keypad').querySelectorAll('button').forEach(b=>b.onclick=()=>{
+  let k=b.dataset.k||b.textContent.trim(),inp=$('keypadValue');
+  if(k==='back')inp.value=inp.value.slice(0,-1);
+  else if(k==='ok'){
+    if(addOneToCurrent(inp.value)){inp.value='';closeManual()}
+    else $('keypadHint').textContent='请输入有效的 12 位 UPC 或 13 位 EAN-13。';
+  } else if(inp.value.length<13)inp.value+=k;
+  if(k!=='ok')$('keypadHint').textContent=inp.value.length<12?'继续输入…':'可以按 ✓ 添加';
+});
 
 $('toggleDiag').onclick=()=>{diagVisible=!diagVisible;$('diag').style.display=diagVisible?'block':'none';if(diagVisible)$('diag').textContent=(current>=0&&photos[current]?(photos[current].diagLog||[]):[]).join('\n')||'当前图片还没有诊断记录。';$('toggleDiag').textContent=diagVisible?'隐藏诊断信息':'显示诊断信息'};
 $('filters').querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>{resultFilter=b.dataset.filter;$('filters').querySelectorAll('button').forEach(x=>x.className='btn '+(x===b?'':'secondary'));renderRows()});
