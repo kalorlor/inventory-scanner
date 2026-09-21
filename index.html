@@ -1,17 +1,17 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="apple-mobile-web-app-capable" content="yes"><title>EAN-13 Inventory Scanner v3</title>
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="apple-mobile-web-app-capable" content="yes"><title>EAN-13 Inventory Scanner v3.1 Diagnostic</title>
 <style>
 :root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#111;background:#f3f4f6}*{box-sizing:border-box}body{margin:0}.wrap{max-width:1100px;margin:auto;padding:18px}.top{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.card{background:#fff;border-radius:18px;padding:16px;margin:14px 0;box-shadow:0 2px 14px #0000000d}.btn,label.btn{display:inline-block;border:0;border-radius:12px;padding:11px 15px;background:#111;color:white;font-size:15px;cursor:pointer}.btn.secondary{background:#e8e8ed;color:#111}.btn.danger{background:#fff0f0;color:#b00020}.hidden{display:none}#thumbs{display:flex;gap:8px;overflow:auto;padding:5px 0}.thumb{min-width:105px;max-width:105px;border:2px solid transparent;border-radius:12px;padding:4px;background:#f4f4f6;position:relative}.thumb.active{border-color:#111}.thumb img{width:95px;height:75px;object-fit:cover;border-radius:8px}.thumb span{display:block;font-size:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.stageWrap{overflow:auto;max-height:70vh;background:#222;border-radius:14px}.stage{position:relative;display:inline-block;line-height:0}.stage img{max-width:none;display:block}.mark{position:absolute;border:3px solid #00a86b;border-radius:7px;background:#00a86b18;line-height:1.2;min-width:34px;min-height:22px}.mark.bad{border-color:#d32f2f;background:#d32f2f18}.mark .tag{position:absolute;left:0;top:-25px;background:#111;color:white;padding:4px 6px;border-radius:6px;font-size:11px;white-space:nowrap}.mark .x{position:absolute;right:-12px;top:-12px;border:0;border-radius:50%;width:26px;height:26px;background:#d32f2f;color:white;font-weight:bold}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.hint{color:#666;font-size:13px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:800px){.grid{grid-template-columns:1fr}}table{width:100%;border-collapse:collapse}th,td{padding:9px;border-bottom:1px solid #eee;text-align:left}.codeInput{font-size:16px;padding:10px;border:1px solid #ccc;border-radius:10px;width:180px}.qty{width:70px;padding:8px}.rowBtns button{border:0;border-radius:8px;padding:7px 9px;margin-right:4px}.ok{color:#087f5b}.warn{color:#b26a00}#status{white-space:pre-wrap}.drop{border:2px dashed #bbb;border-radius:14px;padding:18px;text-align:center}.drop.drag{border-color:#111;background:#f6f6f6}
 </style></head><body><div class="wrap">
-<h1 style="font-size:25px;margin-bottom:4px">EAN-13 库存扫描器 v3</h1><div class="hint">ZXing-WASM 高精度识别 · 多照片批量 · 图片标记 · 手动修正 · CSV 导出。图片在当前设备处理。</div>
-<div class="card"><div class="drop" id="drop"><div class="top" style="justify-content:center"><label class="btn">🖼️ 导入照片（可多选）<input class="hidden" id="files" type="file" accept="image/*" multiple></label><label class="btn secondary">📷 拍一张<input class="hidden" id="camera" type="file" accept="image/*" capture="environment"></label><button class="btn secondary" id="scanAll">扫描全部照片</button><button class="btn danger" id="clearAll">清空</button></div><div class="hint">也可以把多张图片拖到这里（电脑）。iPad 请用“导入照片”，在照片选择器里一次选多张。</div></div><div id="status">正在加载 ZXing-WASM 识别引擎…</div><div id="thumbs"></div></div>
+<h1 style="font-size:25px;margin-bottom:4px">EAN-13 库存扫描器 v3.1</h1><div class="hint">ZXing-WASM 诊断识别 · 原文件/Canvas/分块多路径 · 多照片批量 · 图片标记 · 手动修正 · CSV 导出。图片在当前设备处理。</div>
+<div class="card"><div class="drop" id="drop"><div class="top" style="justify-content:center"><label class="btn">🖼️ 导入照片（可多选）<input class="hidden" id="files" type="file" accept="image/*" multiple></label><label class="btn secondary">📷 拍一张<input class="hidden" id="camera" type="file" accept="image/*" capture="environment"></label><button class="btn secondary" id="scanAll">扫描全部照片</button><button class="btn danger" id="clearAll">清空</button></div><div class="hint">也可以把多张图片拖到这里（电脑）。iPad 请用“导入照片”，在照片选择器里一次选多张。</div></div><div id="status">正在加载 ZXing-WASM 识别引擎…</div><div id="diag" style="margin-top:8px;font:12px ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre-wrap;background:#f7f7f8;border-radius:10px;padding:10px;display:none"></div><div id="thumbs"></div></div>
 <div class="grid"><div class="card"><b>当前图片</b><div class="toolbar"><button class="btn secondary" id="scanOne">重新扫描当前图片</button><button class="btn secondary" id="addManual">＋ 手动添加条码</button><button class="btn secondary" id="zoomOut">－</button><button class="btn secondary" id="zoomIn">＋</button></div><div class="hint">绿色框 = 当前保留的条码。点框右上角 × 可删除。手动添加后可点图片放置标记。</div><div class="stageWrap"><div class="stage" id="stage"><img id="mainImg"></div></div></div>
 <div class="card"><b>扫描结果</b><div class="toolbar"><input id="manualCode" class="codeInput" inputmode="numeric" maxlength="13" placeholder="输入13位 EAN"><button class="btn" id="addCode">添加</button><button class="btn secondary" id="copy">复制</button><button class="btn secondary" id="csv">导出 CSV</button></div><table><thead><tr><th>EAN-13</th><th>Qty</th><th>操作</th></tr></thead><tbody id="rows"></tbody></table><p id="summary"></p></div></div>
-<div class="card hint"><b>识别说明：</b>v3 使用 ZXing-C++ WebAssembly，不再依赖浏览器 BarcodeDetector。每张照片会进行原图 + 重叠分块多轮 EAN-13 扫描，并在原图标出位置。第一次使用需要联网加载约 1MB 的识别引擎；照片本身不会上传到服务器。</div>
+<div class="card hint"><b>识别说明：</b>v3.1 会显示诊断日志，并分别测试原始 File、整图 Canvas 和高倍率分块。使用 ZXing-C++ WebAssembly，不再依赖浏览器 BarcodeDetector。每张照片会进行原图 + 重叠分块多轮 EAN-13 扫描，并在原图标出位置。第一次使用需要联网加载约 1MB 的识别引擎；照片本身不会上传到服务器。</div>
 </div><script src="https://cdn.jsdelivr.net/npm/zxing-wasm@3.1.4/dist/iife/reader/index.js"></script><script>
 const $=id=>document.getElementById(id); let photos=[],current=-1,zoom=1,pendingPlace=null;
 function validEAN13(s){if(!/^\d{13}$/.test(s))return false;let sum=0;for(let i=0;i<12;i++)sum+=(+s[i])*(i%2?3:1);return (10-sum%10)%10===+s[12]}
 function keyDet(d){let b=d.box||{};return d.code+'|'+Math.round((b.x||0)/30)+'|'+Math.round((b.y||0)/30)}
-async function addFiles(list){for(const f of list){if(!f.type.startsWith('image/'))continue;let url=URL.createObjectURL(f),bmp=await createImageBitmap(f);photos.push({name:f.name||'camera.jpg',url,bmp,dets:[]})} if(current<0&&photos.length)current=0;renderThumbs();showCurrent();$('status').textContent=`已导入 ${photos.length} 张照片。`}
+async function addFiles(list){for(const f of list){if(!f.type.startsWith('image/'))continue;let url=URL.createObjectURL(f),bmp=await createImageBitmap(f);photos.push({name:f.name||'camera.jpg',url,bmp,file:f,dets:[]})} if(current<0&&photos.length)current=0;renderThumbs();showCurrent();$('status').textContent=`已导入 ${photos.length} 张照片。`}
 $('files').onchange=e=>addFiles(e.target.files);$('camera').onchange=e=>addFiles(e.target.files);
 const drop=$('drop');['dragenter','dragover'].forEach(n=>drop.addEventListener(n,e=>{e.preventDefault();drop.classList.add('drag')}));['dragleave','drop'].forEach(n=>drop.addEventListener(n,e=>{e.preventDefault();drop.classList.remove('drag')}));drop.addEventListener('drop',e=>addFiles(e.dataTransfer.files));
 function renderThumbs(){let t=$('thumbs');t.innerHTML='';photos.forEach((p,i)=>{let d=document.createElement('div');d.className='thumb '+(i===current?'active':'');d.innerHTML=`<img src="${p.url}"><span>${i+1}. ${p.name}</span><span>${p.dets.length} 个标记</span>`;d.onclick=()=>{current=i;renderThumbs();showCurrent()};t.appendChild(d)})}
@@ -34,31 +34,53 @@ async function zxingReady(){
   return ZXingWASM;
 }
 async function scanPhoto(i){
-  const p=photos[i], z=await zxingReady(), bmp=p.bmp, found=[];
-  async function scanRegion(sx,sy,sw,sh,scale=1,mode='normal'){
-    const c=document.createElement('canvas'); c.width=Math.max(1,Math.round(sw*scale)); c.height=Math.max(1,Math.round(sh*scale));
-    const ctx=c.getContext('2d',{willReadFrequently:true}); ctx.drawImage(bmp,sx,sy,sw,sh,0,0,c.width,c.height);
-    if(mode!=='normal'){
-      const id=ctx.getImageData(0,0,c.width,c.height), d=id.data;
-      for(let k=0;k<d.length;k+=4){let g=.299*d[k]+.587*d[k+1]+.114*d[k+2]; if(mode==='contrast')g=Math.max(0,Math.min(255,(g-128)*1.55+128)); d[k]=d[k+1]=d[k+2]=g;}
-      ctx.putImageData(id,0,0);
+  const p=photos[i], z=await zxingReady(), bmp=p.bmp, found=[], log=[];
+  const diag=$('diag'); diag.style.display='block'; diag.textContent='';
+  function say(x){log.push(x);diag.textContent=log.join('\n');}
+  function extractCode(r){return String(r.text||'').replace(/\D/g,'')}
+  function addResults(arr,sx,sy,scale,label){
+    let accepted=0;
+    for(const r of (arr||[])){
+      const raw=String(r.text||''), code=extractCode(r), fmt=String(r.format||r.symbology||'');
+      if(!(fmt.toUpperCase().includes('EAN13') || fmt.toUpperCase().includes('EAN-13') || (code.length===13&&validEAN13(code)))) continue;
+      if(!validEAN13(code)) continue;
+      const pos=r.position;
+      let pts=[];
+      if(pos){
+        if(Array.isArray(pos)) pts=pos;
+        else pts=[pos.topLeft,pos.topRight,pos.bottomRight,pos.bottomLeft].filter(Boolean);
+      }
+      let box={x:sx,y:sy,width:120/scale,height:45/scale};
+      if(pts.length){const xs=pts.map(q=>Number(q.x)),ys=pts.map(q=>Number(q.y));const x=Math.min(...xs),y=Math.min(...ys),x2=Math.max(...xs),y2=Math.max(...ys);box={x:sx+x/scale,y:sy+y/scale,width:Math.max(1,(x2-x)/scale),height:Math.max(1,(y2-y)/scale)}}
+      found.push({code,box}); accepted++;
     }
-    let arr=[]; try{arr=await z.readBarcodes(ctx.getImageData(0,0,c.width,c.height),{formats:['EAN13'],tryHarder:true,maxNumberOfSymbols:64,tryRotate:true,tryInvert:true,tryDownscale:false});}catch(e){return;}
-    for(const r of arr){const code=(r.text||'').replace(/\D/g,''); if(!validEAN13(code))continue; const q=normalizePos(r.position); let box=q?{x:sx+q.x/scale,y:sy+q.y/scale,width:q.width/scale,height:q.height/scale}:{x:sx,y:sy,width:sw,height:sh}; found.push({code,box});}
+    say(`${label}: ZXing=${(arr||[]).length}, EAN13=${accepted}`);
   }
-  $('status').textContent=`正在扫描 ${i+1}/${photos.length}：${p.name}（原图）`;
-  await scanRegion(0,0,bmp.width,bmp.height,Math.min(1.5,2800/Math.max(bmp.width,bmp.height)),'normal');
-  const cols=bmp.width>=bmp.height?4:3, rows=bmp.width>=bmp.height?3:4, ov=.28;
-  let tileNo=0,total=cols*rows;
+  async function runImageData(imageData,opts,label,sx=0,sy=0,scale=1){
+    try{const arr=await z.readBarcodes(imageData,opts);addResults(arr,sx,sy,scale,label);return arr||[]}catch(e){say(`${label}: ERROR ${e&&e.message?e.message:e}`);return []}
+  }
+  // Diagnostic A: feed the original File/Blob directly to ZXing. This bypasses canvas/iPad pixel conversion.
+  if(p.file){
+    try{let a=await z.readBarcodes(p.file,{formats:['AllLinear'],tryHarder:true,maxNumberOfSymbols:128});addResults(a,0,0,1,'A 原始文件→AllLinear');}catch(e){say(`A 原始文件: ERROR ${e&&e.message?e.message:e}`)}
+    try{let a=await z.readBarcodes(p.file,{formats:['EAN13'],tryHarder:true,maxNumberOfSymbols:128});addResults(a,0,0,1,'B 原始文件→EAN13');}catch(e){say(`B 原始文件: ERROR ${e&&e.message?e.message:e}`)}
+  } else say('A/B: 无原始 File（旧会话图片），跳过');
+  // Diagnostic C: full-resolution canvas ImageData, all 1D formats.
+  let maxSide=Math.max(bmp.width,bmp.height), fullScale=Math.min(1,3000/maxSide);
+  const fc=document.createElement('canvas');fc.width=Math.max(1,Math.round(bmp.width*fullScale));fc.height=Math.max(1,Math.round(bmp.height*fullScale));let fctx=fc.getContext('2d',{willReadFrequently:true});fctx.drawImage(bmp,0,0,fc.width,fc.height);
+  await runImageData(fctx.getImageData(0,0,fc.width,fc.height),{formats:['AllLinear'],tryHarder:true,maxNumberOfSymbols:128},'C 整图Canvas→AllLinear',0,0,fullScale);
+  // Tile scan: deliberately use narrow horizontal-ish crops; 1D codes benefit from more pixels per module.
+  const cols=4,rows=5,ov=.32;let tileNo=0,total=cols*rows;
   for(let y=0;y<rows;y++)for(let x=0;x<cols;x++){
-    tileNo++; $('status').textContent=`正在扫描 ${i+1}/${photos.length}：${p.name} · 区域 ${tileNo}/${total}`;
+    tileNo++; $('status').textContent=`扫描 ${i+1}/${photos.length}：区域 ${tileNo}/${total}`;
     const cw=bmp.width/cols,ch=bmp.height/rows,sx=Math.max(0,x*cw-cw*ov/2),sy=Math.max(0,y*ch-ch*ov/2),sw=Math.min(cw*(1+ov),bmp.width-sx),sh=Math.min(ch*(1+ov),bmp.height-sy);
-    const scale=Math.min(3.2,2200/Math.max(sw,sh)); await scanRegion(sx,sy,sw,sh,scale,'normal');
-    if(found.length<4) await scanRegion(sx,sy,sw,sh,scale,'contrast');
+    const scale=Math.min(4.5,2600/Math.max(sw,sh));const c=document.createElement('canvas');c.width=Math.round(sw*scale);c.height=Math.round(sh*scale);const ctx=c.getContext('2d',{willReadFrequently:true});ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';ctx.drawImage(bmp,sx,sy,sw,sh,0,0,c.width,c.height);
+    let arr=await runImageData(ctx.getImageData(0,0,c.width,c.height),{formats:['AllLinear'],tryHarder:true,maxNumberOfSymbols:32},`T${tileNo}`,sx,sy,scale);
+    if(!arr.length){const id=ctx.getImageData(0,0,c.width,c.height),d=id.data;for(let k=0;k<d.length;k+=4){let g=.299*d[k]+.587*d[k+1]+.114*d[k+2];g=Math.max(0,Math.min(255,(g-128)*1.8+128));d[k]=d[k+1]=d[k+2]=g}await runImageData(id,{formats:['AllLinear'],tryHarder:true,maxNumberOfSymbols:32},`T${tileNo}增强`,sx,sy,scale)}
+    await new Promise(r=>setTimeout(r,0));
   }
   let keep=[];
-  for(const d of found){const cx=d.box.x+d.box.width/2,cy=d.box.y+d.box.height/2;const dup=keep.some(k=>k.code===d.code&&Math.hypot(cx-(k.box.x+k.box.width/2),cy-(k.box.y+k.box.height/2))<Math.max(55,Math.max(d.box.width,d.box.height)*.65));if(!dup)keep.push(d)}
-  p.dets=keep; return keep.length;
+  for(const d of found){const cx=d.box.x+d.box.width/2,cy=d.box.y+d.box.height/2;const dup=keep.some(k=>k.code===d.code&&Math.hypot(cx-(k.box.x+k.box.width/2),cy-(k.box.y+k.box.height/2))<Math.max(65,Math.max(d.box.width,d.box.height)*.8));if(!dup)keep.push(d)}
+  p.dets=keep;say(`完成：保留 ${keep.length} 个位置标记。`);return keep.length;
 }
 $('scanOne').onclick=async()=>{if(current<0)return alert('请先导入照片');$('status').textContent='正在扫描当前图片…';try{let n=await scanPhoto(current);$('status').textContent=`当前图片扫描完成：${n} 个 EAN-13 标记。请查看图片上的绿色框并手动修正。`;renderThumbs();showCurrent()}catch(e){$('status').textContent=e.message}}
 $('scanAll').onclick=async()=>{if(!photos.length)return alert('请先导入照片');try{for(let i=0;i<photos.length;i++){$('status').textContent=`正在扫描 ${i+1}/${photos.length}：${photos[i].name}`;await scanPhoto(i)}$('status').textContent=`全部扫描完成：${photos.length} 张。请逐张检查绿色标记。`;renderThumbs();showCurrent()}catch(e){$('status').textContent=e.message}}
