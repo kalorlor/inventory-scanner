@@ -1,6 +1,6 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="apple-mobile-web-app-capable" content="yes"><title>EAN-13 Inventory Scanner v3.5.1</title>
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="apple-mobile-web-app-capable" content="yes"><title>EAN-13 Inventory Scanner v3.6</title>
 <style>
-:root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#111;background:#f3f4f6}*{box-sizing:border-box}body{margin:0}.wrap{max-width:1100px;margin:auto;padding:18px}.top{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.card{background:#fff;border-radius:18px;padding:16px;margin:14px 0;box-shadow:0 2px 14px #0000000d}.btn,label.btn{display:inline-block;border:0;border-radius:12px;padding:11px 15px;background:#111;color:white;font-size:15px;cursor:pointer}.btn.secondary{background:#e8e8ed;color:#111}.btn.danger{background:#fff0f0;color:#b00020}.hidden{display:none}#thumbs{display:flex;gap:8px;overflow:auto;padding:5px 0}.thumb{min-width:105px;max-width:105px;border:2px solid transparent;border-radius:12px;padding:4px;background:#f4f4f6;position:relative}.thumbDel{position:absolute;right:0;top:0;width:26px;height:26px;border:0;border-radius:50%;background:#d32f2f;color:#fff;font-weight:bold;z-index:2}.thumb.active{border-color:#111}.thumb img{width:95px;height:75px;object-fit:cover;border-radius:8px}.thumb span{display:block;font-size:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.stageWrap{overflow:auto;max-height:70vh;background:#222;border-radius:14px}.stage{position:relative;display:inline-block;line-height:0}.stage img{max-width:none;display:block}.mark{position:absolute;border:3px solid #00a86b;border-radius:7px;background:#00a86b18;line-height:1.2;min-width:34px;min-height:22px}.mark.bad{border-color:#d32f2f;background:#d32f2f18}.mark.manual{border-style:dashed;border-color:#2563eb;background:#2563eb18}.mark .tag{position:absolute;left:0;top:-25px;background:#111;color:white;padding:4px 6px;border-radius:6px;font-size:11px;white-space:nowrap}.mark .x{position:absolute;right:-12px;top:-12px;border:0;border-radius:50%;width:26px;height:26px;background:#d32f2f;color:white;font-weight:bold}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.hint{color:#666;font-size:13px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:800px){.grid{grid-template-columns:1fr}}table{width:100%;border-collapse:collapse}th,td{padding:9px;border-bottom:1px solid #eee;text-align:left}.codeInput{font-size:16px;padding:10px;border:1px solid #ccc;border-radius:10px;width:180px}.qty{width:52px;padding:8px;text-align:center}.qtyCtl{display:flex;align-items:center;gap:5px;white-space:nowrap}.qtyCtl button{width:34px;height:34px;border:0;border-radius:9px;background:#e8e8ed;font-size:20px;font-weight:600}.qtyMeta{font-size:11px;color:#666;margin-top:4px;white-space:nowrap}.rowBtns button{border:0;border-radius:8px;padding:7px 9px;margin-right:4px}.ok{color:#087f5b}.warn{color:#b26a00}#status{white-space:pre-wrap}.drop{border:2px dashed #bbb;border-radius:14px;padding:18px;text-align:center}.drop.drag{border-color:#111;background:#f6f6f6}
+:root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#111;background:#f3f4f6}*{box-sizing:border-box}body{margin:0}.wrap{max-width:1100px;margin:auto;padding:18px}.top{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.card{background:#fff;border-radius:18px;padding:16px;margin:14px 0;box-shadow:0 2px 14px #0000000d}.btn,label.btn{display:inline-block;border:0;border-radius:12px;padding:11px 15px;background:#111;color:white;font-size:15px;cursor:pointer}.btn.secondary{background:#e8e8ed;color:#111}.btn.danger{background:#fff0f0;color:#b00020}.hidden{display:none}#thumbs{display:flex;gap:8px;overflow:auto;padding:5px 0}.thumb{min-width:105px;max-width:105px;border:2px solid transparent;border-radius:12px;padding:4px;background:#f4f4f6;position:relative}.thumbDel{position:absolute;right:0;top:0;width:26px;height:26px;border:0;border-radius:50%;background:#d32f2f;color:#fff;font-weight:bold;z-index:2}.thumb.active{border-color:#111}.thumb img{width:95px;height:75px;object-fit:cover;border-radius:8px}.thumb span{display:block;font-size:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.stageWrap{overflow:auto;max-height:70vh;background:#222;border-radius:14px}.stage{position:relative;display:inline-block;line-height:0}.stage img{max-width:none;display:block}.mark{position:absolute;border:3px solid #00a86b;border-radius:7px;background:#00a86b18;line-height:1.2;min-width:34px;min-height:22px}.mark.bad{border-color:#d32f2f;background:#d32f2f18}.mark.manual{border-style:dashed;border-color:#2563eb;background:#2563eb18}.mark .tag{position:absolute;left:0;top:-25px;background:#111;color:white;padding:4px 6px;border-radius:6px;font-size:11px;white-space:nowrap}.mark .x{position:absolute;right:-12px;top:-12px;border:0;border-radius:50%;width:26px;height:26px;background:#d32f2f;color:white;font-weight:bold}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.hint{color:#666;font-size:13px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:800px){.grid{grid-template-columns:1fr}}table{width:100%;border-collapse:collapse}th,td{padding:9px;border-bottom:1px solid #eee;text-align:left}.codeInput{font-size:16px;padding:10px;border:1px solid #ccc;border-radius:10px;width:180px}.qty{width:70px;padding:8px}.rowBtns button{border:0;border-radius:8px;padding:7px 9px;margin-right:4px}.ok{color:#087f5b}.warn{color:#b26a00}#status{white-space:pre-wrap}.drop{border:2px dashed #bbb;border-radius:14px;padding:18px;text-align:center}.drop.drag{border-color:#111;background:#f6f6f6}
 
 .manualModal{position:fixed;inset:0;background:#0008;z-index:9999;display:flex;align-items:center;justify-content:center;padding:18px}
 .manualModal.hidden{display:none}.manualPanel{background:#fff;width:min(620px,100%);max-height:90vh;overflow:auto;border-radius:18px;padding:16px}
@@ -8,13 +8,25 @@
 .keypad{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-width:340px;margin:12px auto}.keypad button{font-size:24px;padding:16px;border:0;border-radius:12px;background:#eee}
 .searchResults{max-height:280px;overflow:auto;border:1px solid #eee;border-radius:12px}.searchItem{padding:11px;border-bottom:1px solid #eee;cursor:pointer}.searchItem:last-child{border-bottom:0}
 .camVideo{width:100%;max-height:48vh;background:#111;border-radius:12px}.manualBig{font-size:21px;width:100%;padding:12px;border:1px solid #bbb;border-radius:10px}
-</style></head><body><div class="wrap">
-<h1 style="font-size:25px;margin-bottom:4px">EAN-13 库存扫描器 v3.5.1</h1><div class="hint">ZXing-WASM 高精度识别 · 动态导入公司库存 Excel · 差异优先排序 · 可显示真实 UPC/EAN 条形码。所有数据仅在当前设备处理。</div>
+.qtyCtl{display:flex;align-items:center;gap:7px;white-space:nowrap}.qtyCtl button{width:34px;height:34px;border:0;border-radius:9px;font-size:22px;background:#e8e8ed}.qtyNum{min-width:28px;text-align:center;font-weight:700}.qtyBreak{font-size:11px;color:#777;margin-top:4px}.jumpBtn{border:0;background:transparent;text-decoration:underline;padding:0;cursor:pointer;font:inherit;text-align:left}.mark.focusMark{outline:5px solid #ffd60a;outline-offset:4px;z-index:8}.photoChoices{font-size:12px;margin-top:5px}.photoChoices button{border:0;border-radius:7px;padding:4px 7px;margin:2px;background:#e8e8ed}.reviewBtn{border:0;border-radius:8px;padding:7px 9px;background:#fff3cd;color:#7a5600}.reviewed{color:#087f5b;font-size:12px}.progressLine{display:flex;gap:12px;flex-wrap:wrap}.progressPill{background:#f4f4f6;border-radius:10px;padding:7px 10px}</style></head><body><div class="wrap">
+<h1 style="font-size:25px;margin-bottom:4px">EAN-13 库存扫描器 v3.6</h1><div class="hint">ZXing-WASM 高精度识别 · 动态导入公司库存 Excel · 差异优先排序 · 可显示真实 UPC/EAN 条形码。所有数据仅在当前设备处理。v3.6 会自动保存盘点数据，但不会把照片写入长期存档。</div>
 <div class="card"><div class="top" style="justify-content:space-between"><div><b>📊 公司库存表</b><div class="hint" id="inventoryInfo">尚未导入库存表。支持 .xlsx / .xls；会自动寻找 EAN/UPC 与 In-Store Qty。</div></div><label class="btn">导入 / 更换 Excel<input class="hidden" id="inventoryFile" type="file" accept=".xlsx,.xls,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel"></label></div><div id="inventoryStats" style="margin-top:10px"></div></div>
+<div class="card" id="progressCard">
+<div class="top" style="justify-content:space-between">
+ <div><b>💾 盘点进度</b><div class="hint">数据自动保存在 Chrome 本机；照片不会写入长期存档。清理照片后，扫描数量仍会保留。</div></div>
+ <div class="toolbar">
+  <button class="btn secondary" id="exportState">导出盘点存档</button>
+  <label class="btn secondary">恢复盘点存档<input class="hidden" id="importState" type="file" accept=".json,application/json"></label>
+  <button class="btn secondary" id="cleanupPhotos">🧹 清理照片，保留数据</button>
+  <button class="btn danger" id="resetProgress">重置盘点进度</button>
+ </div>
+</div>
+<div id="progressStats" style="margin-top:8px"></div>
+</div>
 <div class="card"><div class="drop" id="drop"><div class="top" style="justify-content:center"><label class="btn">🖼️ 导入照片（可多选）<input class="hidden" id="files" type="file" accept="image/*" multiple></label><label class="btn secondary">📷 拍一张<input class="hidden" id="camera" type="file" accept="image/*" capture="environment"></label><button class="btn secondary" id="scanAll">扫描全部照片</button><button class="btn danger" id="clearAll">清空</button></div><div class="hint">也可以把多张图片拖到这里（电脑）。iPad 请用“导入照片”，在照片选择器里一次选多张。</div></div><div id="status">正在加载 ZXing-WASM 识别引擎…</div><button class="btn secondary" id="toggleDiag" style="margin-top:8px;font-size:12px;padding:7px 10px">显示诊断信息</button><div id="diag" style="margin-top:8px;font:12px ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre-wrap;background:#f7f7f8;border-radius:10px;padding:10px;display:none"></div><div id="thumbs"></div></div>
 <div class="grid"><div class="card"><b>当前图片</b><div class="toolbar"><button class="btn secondary" id="scanOne">重新扫描当前图片</button><button class="btn secondary" id="addManual">＋ 补漏</button><button class="btn secondary" id="zoomOut">－</button><button class="btn secondary" id="zoomIn">＋</button></div><div class="hint">绿色框 = 库存表中找到；红色框 = 扫描成功但库存表找不到。点框右上角 × 可删除。漏扫可在右侧直接手动补录。</div><div class="stageWrap"><div class="stage" id="stage"><img id="mainImg"></div></div></div>
-<div class="card"><div class="top" style="justify-content:space-between"><b id="resultTitle">当前图片扫描结果</b><div><button class="btn" id="viewCurrent">当前图片</button> <button class="btn secondary" id="viewAll">全部汇总</button></div></div><div class="toolbar"><input id="manualCode" class="codeInput" inputmode="numeric" maxlength="13" placeholder="输入12/13位 EAN/UPC"><button class="btn" id="addCode">添加</button><button class="btn secondary" id="copy">复制</button><button class="btn secondary" id="csv">导出 CSV</button></div><div class="toolbar" id="filters"><button class="btn" data-filter="all">全部</button><button class="btn secondary" data-filter="diff">仅差异</button><button class="btn secondary" data-filter="unmatched">未匹配</button></div><table><thead><tr><th>扫描 EAN</th><th>商品 / 条形码</th><th>In-Store</th><th>已扫</th><th>差异</th><th>状态</th><th>操作</th></tr></thead><tbody id="rows"></tbody></table><p id="summary"></p></div></div>
-<div class="card hint"><b>识别说明：</b>v3.5.1 默认隐藏诊断日志；需要排查识别率时可点“显示诊断信息”。使用 ZXing-C++ WebAssembly，不再依赖浏览器 BarcodeDetector。每张照片会进行原图 + 重叠分块多轮 EAN-13 扫描，并在原图标出位置。第一次使用需要联网加载约 1MB 的识别引擎；照片本身不会上传到服务器。</div>
+<div class="card"><div class="top" style="justify-content:space-between"><b id="resultTitle">当前图片扫描结果</b><div><button class="btn" id="viewCurrent">当前图片</button> <button class="btn secondary" id="viewAll">全部汇总</button></div></div><div class="toolbar"><input id="manualCode" class="codeInput" inputmode="numeric" maxlength="13" placeholder="输入12/13位 EAN/UPC"><button class="btn" id="addCode">添加</button><button class="btn secondary" id="copy">复制</button><button class="btn secondary" id="csv">导出 CSV</button></div><div class="toolbar" id="filters"><button class="btn" data-filter="all">全部</button><button class="btn secondary" data-filter="diff">仅差异</button><button class="btn secondary" data-filter="unmatched">未匹配</button><button class="btn secondary" data-filter="pending">待确认库存</button></div><table><thead><tr><th>扫描 EAN</th><th>商品 / 条形码</th><th>In-Store</th><th>已扫</th><th>差异</th><th>状态</th><th>操作</th></tr></thead><tbody id="rows"></tbody></table><p id="summary"></p></div></div>
+<div class="card hint"><b>识别说明：</b>v3.6 默认隐藏诊断日志；需要排查识别率时可点“显示诊断信息”。使用 ZXing-C++ WebAssembly，不再依赖浏览器 BarcodeDetector。每张照片会进行原图 + 重叠分块多轮 EAN-13 扫描，并在原图标出位置。第一次使用需要联网加载约 1MB 的识别引擎；照片本身不会上传到服务器。</div>
 
 <div id="manualModal" class="manualModal hidden">
  <div class="manualPanel">
@@ -49,12 +61,60 @@
 </div>
 </div><script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script><script src="https://cdn.jsdelivr.net/npm/zxing-wasm@3.1.4/dist/iife/reader/index.js"></script><script>
 const $=id=>document.getElementById(id); let photos=[],current=-1,zoom=1,resultMode='current',resultFilter='all',diagVisible=false; let inventory=new Map(),inventoryFileName='',inventoryRows=0,inventoryTotal=0;
+let archivedCounts=new Map(), reviewStatus=new Map(); const SAVE_KEY='ean_inventory_scanner_v36'; let restoring=false;
 function validEAN13(s){if(!/^\d{13}$/.test(s))return false;let sum=0;for(let i=0;i<12;i++)sum+=(+s[i])*(i%2?3:1);return (10-sum%10)%10===+s[12]}
 function digits(v){return String(v??'').replace(/\.0+$/,'').replace(/\D/g,'')}
 function normCode(v){let s=digits(v);if(s.length===12)return '0'+s;if(s.length===13)return s;return s}
 function codeAliases(v){const s=digits(v),out=new Set();if(!s)return [];out.add(s);if(s.length===12)out.add('0'+s);if(s.length===13&&s[0]==='0')out.add(s.slice(1));out.add(normCode(s));return [...out]}
 function invFor(code){for(const k of codeAliases(code)){const hit=inventory.get(k);if(hit)return hit}return null}
 function esc(s){return String(s??'').replace(/[&<>\"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+
+function uniqueInventoryRecords(){const seen=new Set(),a=[];for(const rec of inventory.values()){if(seen.has(rec))continue;seen.add(rec);a.push(rec)}return a}
+function mapToObj(m){return Object.fromEntries([...m])}
+function currentTotalSnapshot(){return mapToObj(allCounts())}
+function statePayload(){
+ return {version:'3.6',savedAt:new Date().toISOString(),inventoryFileName,
+  inventory:uniqueInventoryRecords(),counts:currentTotalSnapshot(),reviewStatus:mapToObj(reviewStatus)};
+}
+function saveState(){
+ if(restoring)return;
+ try{localStorage.setItem(SAVE_KEY,JSON.stringify(statePayload()));updateProgress()}catch(e){console.warn('autosave failed',e)}
+}
+function restoreStateObject(st,fromFile=false){
+ if(!st||!st.counts)return false;restoring=true;
+ archivedCounts=new Map(Object.entries(st.counts||{}).map(([k,v])=>[k,Number(v)||0]));
+ reviewStatus=new Map(Object.entries(st.reviewStatus||{}));
+ if(Array.isArray(st.inventory)&&st.inventory.length){
+   inventory=new Map();inventoryRows=0;inventoryTotal=0;
+   for(const rec0 of st.inventory){let rec={...rec0,inStore:Number(rec0.inStore)||0};for(const a of codeAliases(rec.raw||rec.normalized))inventory.set(a,rec);inventoryRows++;inventoryTotal+=rec.inStore}
+   inventoryFileName=st.inventoryFileName||'已恢复的库存表';
+   $('inventoryInfo').textContent=`已恢复库存表：${inventoryFileName}`;
+   $('inventoryStats').innerHTML=`<b>${inventoryRows}</b> 个 SKU · In-Store 合计 <b>${inventoryTotal}</b> 件 · <span class="ok">✓ 已恢复</span>`;
+ }
+ restoring=false;resultMode='all';renderRows();updateProgress();
+ $('status').textContent=fromFile?'盘点存档已恢复。照片不包含在存档中。':'已恢复上次自动保存的盘点数据。照片不会自动恢复。';
+ return true;
+}
+function restoreLocal(){
+ try{let raw=localStorage.getItem(SAVE_KEY);if(raw)restoreStateObject(JSON.parse(raw),false)}catch(e){console.warn(e)}
+}
+function updateProgress(){
+ if(!$('progressStats'))return;
+ let recs=uniqueInventoryRecords(),counts=allCounts(),matched=0,reviewed=0,pending=0,missing=0;
+ for(const rec of recs){let q=counts.get(rec.normalized)||counts.get(normCode(rec.raw))||0,d=q-rec.inStore;
+   if(d===0)matched++; else if(reviewStatus.has(rec.normalized)){reviewed++;} else {pending++;if(q===0&&rec.inStore>0)missing++}
+ }
+ let done=matched+reviewed,total=recs.length,pct=total?Math.round(done/total*100):0;
+ $('progressStats').innerHTML=`<div class="progressLine"><span class="progressPill"><b>${done}/${total||0}</b> SKU 已完成 (${pct}%)</span><span class="progressPill">✓ 数量一致 ${matched}</span><span class="progressPill">👁 已人工确认 ${reviewed}</span><span class="progressPill">🔍 待确认 ${pending}</span><span class="progressPill">🚫 系统有货但未扫到 ${missing}</span></div>`;
+}
+function archiveAndClearPhotos(){
+ if(!photos.length)return alert('目前没有照片需要清理。');
+ if(!confirm(`清理 ${photos.length} 张照片？\n\n扫描数量、人工调整、库存表和确认状态都会保留；之后将无法再跳回这些照片复查。`))return;
+ let total=allCounts();archivedCounts=new Map(total);
+ photos.forEach(p=>{if(p.url)URL.revokeObjectURL(p.url)});photos=[];current=-1;resultMode='all';renderThumbs();showCurrent();saveState();
+ $('status').textContent='照片已清理，盘点数据已保留。';
+}
+
 function findHeader(headers,names){const clean=x=>String(x||'').toLowerCase().replace(/[\s_\-\/]/g,'');for(const n of names){let i=headers.findIndex(h=>clean(h)===clean(n));if(i>=0)return headers[i]}for(const n of names){let i=headers.findIndex(h=>clean(h).includes(clean(n)));if(i>=0)return headers[i]}return null}
 async function loadInventory(file){
  try{
@@ -64,86 +124,61 @@ async function loadInventory(file){
   if(!rows)throw new Error('找不到 EAN/UPC 或 In-Store Qty 栏。请确认是公司 Stock Summary 格式。');
   inventory=new Map();inventoryRows=0;inventoryTotal=0;
   for(const r of rows){let raw=digits(r[cols.ean]);if(!raw)continue;let key=normCode(raw),qty=Number(String(r[cols.qty]).replace(/,/g,''))||0;let existing=null;for(const a of codeAliases(raw)){if(inventory.has(a)){existing=inventory.get(a);break}}if(existing){existing.inStore+=qty;for(const a of codeAliases(raw))inventory.set(a,existing);inventoryTotal+=qty;continue}let rec={raw,normalized:key,inStore:qty,desc:cols.desc?String(r[cols.desc]||''):'',size:cols.size?String(r[cols.size]||''):''};for(const a of codeAliases(raw))inventory.set(a,rec);inventoryRows++;inventoryTotal+=qty}
-  inventoryFileName=file.name;$('inventoryInfo').textContent=`当前库存表：${file.name} · 工作表：${chosen}`;$('inventoryStats').innerHTML=`<b>${inventoryRows}</b> 个 SKU · In-Store 合计 <b>${inventoryTotal}</b> 件 · <span class="ok">✓ 已加载</span>`;renderRows();renderMarks();$('status').textContent='库存表已加载。现在可以导入照片并扫描。';
+  inventoryFileName=file.name;$('inventoryInfo').textContent=`当前库存表：${file.name} · 工作表：${chosen}`;$('inventoryStats').innerHTML=`<b>${inventoryRows}</b> 个 SKU · In-Store 合计 <b>${inventoryTotal}</b> 件 · <span class="ok">✓ 已加载</span>`;renderRows();renderMarks();saveState();$('status').textContent='库存表已加载。现在可以导入照片并扫描。';
  }catch(e){alert(e.message);$('inventoryInfo').textContent='库存表读取失败：'+e.message}
 }
 $('inventoryFile').onchange=e=>{if(e.target.files&&e.target.files[0])loadInventory(e.target.files[0])};
 function keyDet(d){let b=d.box||{};return d.code+'|'+Math.round((b.x||0)/30)+'|'+Math.round((b.y||0)/30)}
-async function addFiles(list,source='gallery'){
- for(const f of list){
-  if(!f.type.startsWith('image/'))continue;
-  // Normalize gallery/camera images into one canvas coordinate system first.
-  // This avoids mixing EXIF/original-file coordinates with createImageBitmap/tile coordinates.
-  let rawBmp=await createImageBitmap(f,{imageOrientation:'from-image'}).catch(()=>createImageBitmap(f));
-  let c=document.createElement('canvas');c.width=rawBmp.width;c.height=rawBmp.height;
-  let cx=c.getContext('2d',{willReadFrequently:true});cx.drawImage(rawBmp,0,0);
-  let blob=await new Promise(res=>c.toBlob(res,'image/jpeg',0.96));
-  let normalizedFile=new File([blob],f.name||'photo.jpg',{type:'image/jpeg'});
-  let bmp=await createImageBitmap(blob),url=URL.createObjectURL(blob);
-  if(rawBmp.close)rawBmp.close();
-  photos.push({name:f.name||'camera.jpg',url,bmp,file:normalizedFile,source,dets:[],diagLog:[]});
- }
- if(current<0&&photos.length)current=0;renderThumbs();showCurrent();
- $('status').textContent=`已导入 ${photos.length} 张照片，并完成方向/坐标标准化。`;
-}
-$('files').onchange=e=>addFiles(e.target.files,'gallery');$('camera').onchange=e=>addFiles(e.target.files,'camera');
-const drop=$('drop');['dragenter','dragover'].forEach(n=>drop.addEventListener(n,e=>{e.preventDefault();drop.classList.add('drag')}));['dragleave','drop'].forEach(n=>drop.addEventListener(n,e=>{e.preventDefault();drop.classList.remove('drag')}));drop.addEventListener('drop',e=>addFiles(e.dataTransfer.files,'gallery'));
+async function addFiles(list){for(const f of list){if(!f.type.startsWith('image/'))continue;let url=URL.createObjectURL(f),bmp=await createImageBitmap(f);photos.push({name:f.name||'camera.jpg',url,bmp,file:f,dets:[],diagLog:[],manualAdj:{}})} if(current<0&&photos.length)current=0;renderThumbs();showCurrent();$('status').textContent=`已导入 ${photos.length} 张照片。`}
+$('files').onchange=e=>addFiles(e.target.files);$('camera').onchange=e=>addFiles(e.target.files);
+const drop=$('drop');['dragenter','dragover'].forEach(n=>drop.addEventListener(n,e=>{e.preventDefault();drop.classList.add('drag')}));['dragleave','drop'].forEach(n=>drop.addEventListener(n,e=>{e.preventDefault();drop.classList.remove('drag')}));drop.addEventListener('drop',e=>addFiles(e.dataTransfer.files));
 function renderThumbs(){let t=$('thumbs');t.innerHTML='';photos.forEach((p,i)=>{let d=document.createElement('div');d.className='thumb '+(i===current?'active':'');d.innerHTML=`<button class="thumbDel" title="删除这张照片">×</button><img src="${p.url}"><span>${i+1}. ${p.name}</span><span>${p.dets.length} 个标记</span>`;d.querySelector('.thumbDel').onclick=e=>{e.stopPropagation();deletePhoto(i)};d.onclick=()=>{current=i;resultMode='current';renderThumbs();showCurrent()};t.appendChild(d)})}
 
 function deletePhoto(i){if(i<0||i>=photos.length)return;let p=photos[i];if(!confirm(`删除这张照片？\n${p.name}\n\n这张照片的 ${p.dets.length} 个扫描/手动标记也会一起删除。`))return;URL.revokeObjectURL(p.url);photos.splice(i,1);if(!photos.length)current=-1;else if(current>i)current--;else if(current===i)current=Math.min(i,photos.length-1);renderThumbs();showCurrent();$('status').textContent='已删除单张照片，并同步更新扫描结果。'}
-function countsForCurrent(){let m=new Map();if(current>=0&&photos[current])photos[current].dets.forEach(d=>m.set(d.code,(m.get(d.code)||0)+1));return m}
+function photoAutoCount(p,code){return p.dets.filter(d=>d.code===code).length}
+function photoManual(p,code){return Number((p.manualAdj||{})[code]||0)}
+function countsForCurrent(){let m=new Map();if(current>=0&&photos[current]){let p=photos[current];p.dets.forEach(d=>m.set(d.code,(m.get(d.code)||0)+1));for(const [c,n] of Object.entries(p.manualAdj||{}))if(n)m.set(c,(m.get(c)||0)+n)}return m}
 function activeCounts(){return resultMode==='all'?allCounts():countsForCurrent()}
-function sourceCounts(code){
- let ps=resultMode==='all'?photos:(current>=0?[photos[current]]:[]);
- let auto=0,manual=0;
- ps.forEach(p=>p.dets.forEach(d=>{if(d.code===code){if(d.manual)manual++;else auto++}}));
- return {auto,manual};
-}
-function adjustQty(code,delta){
- const cur=activeCounts().get(code)||0;
- setQty(code,Math.max(0,cur+delta));
-}
-
 function updateModeButtons(){$('viewCurrent').className='btn '+(resultMode==='current'?'':'secondary');$('viewAll').className='btn '+(resultMode==='all'?'':'secondary');$('resultTitle').textContent=resultMode==='all'?'全部照片汇总':'当前图片扫描结果'}
 function showCurrent(){let im=$('mainImg'); if(current<0){im.removeAttribute('src');$('stage').querySelectorAll('.mark').forEach(x=>x.remove());renderRows();return}let p=photos[current];$('diag').textContent=(p.diagLog||[]).join('\n');im.src=p.url;im.onload=()=>{applyZoom();renderMarks()};renderRows()}
 function applyZoom(){if(current<0)return;let p=photos[current],max=850;let base=Math.min(1,max/p.bmp.width);let w=p.bmp.width*base*zoom;$('mainImg').style.width=w+'px';$('mainImg').style.height='auto';renderMarks()}
-function renderMarks(){let st=$('stage');st.querySelectorAll('.mark').forEach(x=>x.remove());if(current<0||!$('mainImg').clientWidth)return;let p=photos[current],sx=$('mainImg').clientWidth/p.bmp.width,sy=$('mainImg').clientHeight/p.bmp.height;p.dets.forEach((d,idx)=>{if(d.noMark)return;let b=d.box||{x:10+idx*8,y:35+idx*8,width:130,height:55};let m=document.createElement('div');m.className='mark'+(inventory.size&&!invFor(d.code)?' bad':'')+(d.manual?' manual':'');m.style.left=b.x*sx+'px';m.style.top=b.y*sy+'px';m.style.width=Math.max(30,b.width*sx)+'px';m.style.height=Math.max(22,b.height*sy)+'px';m.innerHTML=`<span class="tag">${d.code}${d.manual?' · 手动':''}</span><button class="x">×</button>`;m.querySelector('.x').onclick=e=>{e.stopPropagation();p.dets.splice(idx,1);renderMarks();renderRows();renderThumbs()};st.appendChild(m)})}
-function allCounts(){let m=new Map();photos.forEach(p=>p.dets.forEach(d=>m.set(d.code,(m.get(d.code)||0)+1)));return m}
+function renderMarks(){let st=$('stage');st.querySelectorAll('.mark').forEach(x=>x.remove());if(current<0||!$('mainImg').clientWidth)return;let p=photos[current],sx=$('mainImg').clientWidth/p.bmp.width,sy=$('mainImg').clientHeight/p.bmp.height;p.dets.forEach((d,idx)=>{let b=d.box||{x:10+idx*8,y:35+idx*8,width:130,height:55};let m=document.createElement('div');m.dataset.code=d.code;m.className='mark'+(inventory.size&&!invFor(d.code)?' bad':'')+(d.manual?' manual':'');m.style.left=b.x*sx+'px';m.style.top=b.y*sy+'px';m.style.width=Math.max(30,b.width*sx)+'px';m.style.height=Math.max(22,b.height*sy)+'px';m.innerHTML=`<span class="tag">${d.code}${d.manual?' · 手动':''}</span><button class="x">×</button>`;m.querySelector('.x').onclick=e=>{e.stopPropagation();p.dets.splice(idx,1);renderMarks();renderRows();renderThumbs()};st.appendChild(m)})}
+function allCounts(){let m=new Map();photos.forEach(p=>{p.dets.forEach(d=>m.set(d.code,(m.get(d.code)||0)+1));for(const [c,n] of Object.entries(p.manualAdj||{}))if(n)m.set(c,(m.get(c)||0)+n)});return m}
+function breakdown(code){let auto=Number(archivedCounts.get(code)||0),manual=0,by=[];photos.forEach((p,i)=>{let a=photoAutoCount(p,code),m=photoManual(p,code);auto+=a;manual+=m;if(a||m)by.push({i,a,m,total:a+m})});return {auto,manual,by}}
+function jumpToDetection(code,photoIndex){current=photoIndex;resultMode='current';renderThumbs();showCurrent();setTimeout(()=>{let marks=[...document.querySelectorAll('.mark')].filter(x=>x.dataset.code===code);marks.forEach(x=>x.classList.add('focusMark'));if(marks[0])marks[0].scrollIntoView({behavior:'smooth',block:'center',inline:'center'});setTimeout(()=>marks.forEach(x=>x.classList.remove('focusMark')),2200)},250)}
 function renderRows(){
  updateModeButtons();let r=$('rows');r.innerHTML='';let counts=activeCounts();
  let items=[...counts].map(([code,q])=>{let iv=invFor(code),diff=iv?q-iv.inStore:null;return {code,q,iv,diff}});
- if(resultFilter==='diff')items=items.filter(x=>x.iv&&x.diff!==0);else if(resultFilter==='unmatched')items=items.filter(x=>inventory.size&&!x.iv);
- // Problems first: unmatched, then quantity differences by absolute size, then matched items.
+ if(resultMode==='all'&&resultFilter==='pending'){
+   let seen=new Set(items.filter(x=>x.iv).map(x=>x.iv.normalized));
+   for(const iv of uniqueInventoryRecords())if(!seen.has(iv.normalized)){let q=counts.get(iv.normalized)||0;items.push({code:iv.normalized,q,iv,diff:q-iv.inStore})}
+   items=items.filter(x=>x.iv&&x.diff!==0&&!reviewStatus.has(x.iv.normalized));
+ } else if(resultFilter==='diff')items=items.filter(x=>x.iv&&x.diff!==0);else if(resultFilter==='unmatched')items=items.filter(x=>inventory.size&&!x.iv);
  items.sort((a,b)=>{let pa=!a.iv?0:(a.diff!==0?1:2),pb=!b.iv?0:(b.diff!==0?1:2);if(pa!==pb)return pa-pb;if(pa===1&&Math.abs(b.diff)!==Math.abs(a.diff))return Math.abs(b.diff)-Math.abs(a.diff);return a.code.localeCompare(b.code)});
  for(const {code,q,iv,diff} of items){
-  let status=inventory.size?(iv?(diff===0?'✓ 数量一致':'⚠ 数量不同'):'⚠ 未匹配'):'未导入库存表';let product=iv?[iv.desc,iv.size].filter(Boolean).join(' · '):'';let shown=iv&&iv.raw!==code?`${code}<div class="hint">库存: ${esc(iv.raw)}</div>`:code;let bid='bc_'+Math.random().toString(36).slice(2);
-  let tr=document.createElement('tr');tr.innerHTML=`<td>${shown}</td><td>${esc(product)}<div><button class="bcToggle" data-bc="${bid}" data-code="${esc(code)}" data-raw="${iv?esc(iv.raw):''}">显示条形码</button></div><div id="${bid}" class="hidden" style="margin-top:8px;overflow:auto"><svg></svg><div class="hint bcNote"></div></div></td><td>${iv?iv.inStore:'—'}</td><td><div class="qtyCtl"><button data-minus="${code}" title="减 1">−</button><input class="qty" type="number" min="0" value="${q}" data-code="${code}"><button data-plus="${code}" title="加 1">+</button></div><div class="qtyMeta">${(()=>{let sc=sourceCounts(code);return `自动 ${sc.auto}${sc.manual?` · 手动 ${sc.manual>0?'+':''}${sc.manual}`:''}`})()}</div></td><td class="${iv&&diff===0?'ok':(iv?'warn':'')}">${iv?(diff>0?'+':'')+diff:'—'}</td><td class="${iv&&diff===0?'ok':'warn'}">${status}</td><td class="rowBtns"><button data-del="${code}">删除${resultMode==='all'?'全部':'本图'}</button></td>`;r.appendChild(tr)
+  let bd=breakdown(code),status=inventory.size?(iv?(diff===0?'✓ 数量一致':'⚠ 数量不同'):'⚠ 未匹配'):'未导入库存表',product=iv?[iv.desc,iv.size].filter(Boolean).join(' · '):'',shown=iv&&iv.raw!==code?`${code}<div class="hint">库存: ${esc(iv.raw)}</div>`:code,bid='bc_'+Math.random().toString(36).slice(2);
+  let loc=(resultMode==='current'&&current>=0&&photoAutoCount(photos[current],code)>0)?`<button class="jumpBtn" data-jump="${code}" data-photo="${current}">${shown}</button>`:(resultMode==='all'&&bd.by.length===1&&bd.by[0].a>0?`<button class="jumpBtn" data-jump="${code}" data-photo="${bd.by[0].i}">${shown}</button>`:shown);
+  let photoList=resultMode==='all'&&bd.by.length>1?`<div class="photoChoices">${bd.by.map(x=>`<button data-jump="${code}" data-photo="${x.i}">照片 ${x.i+1} · ${x.total}</button>`).join('')}</div>`:'';
+  let tr=document.createElement('tr');tr.innerHTML=`<td>${loc}${photoList}</td><td>${esc(product)}<div><button class="bcToggle" data-bc="${bid}" data-code="${esc(code)}" data-raw="${iv?esc(iv.raw):''}">显示条形码</button></div><div id="${bid}" class="hidden" style="margin-top:8px;overflow:auto"><svg></svg><div class="hint bcNote"></div></div></td><td>${iv?iv.inStore:'—'}</td><td><div class="qtyCtl"><button data-minus="${code}">−</button><span class="qtyNum">${q}</span><button data-plus="${code}">+</button></div><div class="qtyBreak">自动 ${bd.auto}${bd.manual?` · 手动 ${bd.manual>0?'+':''}${bd.manual}`:''}</div></td><td class="${iv&&diff===0?'ok':(iv?'warn':'')}">${iv?(diff>0?'+':'')+diff:'—'}</td><td class="${iv&&diff===0?'ok':'warn'}">${status}</td><td class="rowBtns"><button data-del="${code}">删除${resultMode==='all'?'全部':'本图'}</button>${resultMode==='all'&&iv&&diff!==0?(reviewStatus.has(iv.normalized)?`<button class="reviewBtn" data-unreview="${iv.normalized}">取消确认</button><div class="reviewed">✓ 已确认现场数量</div>`:`<button class="reviewBtn" data-review="${iv.normalized}">确认已检查</button>`):''}</td>`;r.appendChild(tr)
  }
- r.querySelectorAll('.bcToggle').forEach(b=>b.onclick=()=>{let box=$(b.dataset.bc);if(!box)return;let opening=box.classList.contains('hidden');box.classList.toggle('hidden');b.textContent=opening?'收起条形码':'显示条形码';if(opening){let raw=digits(b.dataset.raw),scan=digits(b.dataset.code),value=raw.length===12?raw:(raw.length===13?raw:scan);let format=value.length===12?'UPC':'EAN13';try{JsBarcode(box.querySelector('svg'),value,{format,displayValue:true,height:62,width:2,margin:8,fontSize:15});box.querySelector('.bcNote').textContent=(raw?'公司库存编码：'+raw:'扫描编码：'+scan)+(format==='UPC'?' · UPC-A':' · EAN-13')}catch(e){box.querySelector('.bcNote').textContent='无法生成条形码：'+e.message}}});
- r.querySelectorAll('.qty').forEach(inp=>inp.onchange=()=>setQty(inp.dataset.code,Math.max(0,+inp.value||0)));
- r.querySelectorAll('[data-minus]').forEach(b=>b.onclick=()=>adjustQty(b.dataset.minus,-1));
- r.querySelectorAll('[data-plus]').forEach(b=>b.onclick=()=>adjustQty(b.dataset.plus,1));
- r.querySelectorAll('[data-del]').forEach(b=>b.onclick=()=>{let c=b.dataset.del;if(resultMode==='all')photos.forEach(p=>p.dets=p.dets.filter(d=>d.code!==c));else if(current>=0)photos[current].dets=photos[current].dets.filter(d=>d.code!==c);renderRows();renderMarks();renderThumbs()});
- let total=[...counts.values()].reduce((a,b)=>a+b,0),matched=0,unmatched=0,diffSkus=0;if(inventory.size){for(const [c,q] of counts){let iv=invFor(c);if(iv){matched+=q;if(q!==iv.inStore)diffSkus++}else unmatched+=q}}$('summary').textContent=(resultMode==='all'?`全部：${total} 件，${counts.size} 个不同条码，${photos.length} 张照片。`:(current>=0?`本图：${total} 件，${counts.size} 个不同条码。`:'尚未选择图片。'))+(inventory.size?` 数量差异 ${diffSkus} 个 SKU；未匹配 ${unmatched} 件。`:' 请先导入公司库存 Excel。')
+ r.querySelectorAll('.bcToggle').forEach(b=>b.onclick=()=>{let box=$(b.dataset.bc);if(!box)return;let opening=box.classList.contains('hidden');box.classList.toggle('hidden');b.textContent=opening?'收起条形码':'显示条形码';if(opening){let raw=digits(b.dataset.raw),scan=digits(b.dataset.code),value=raw.length===12?raw:(raw.length===13?raw:scan),format=value.length===12?'UPC':'EAN13';try{JsBarcode(box.querySelector('svg'),value,{format,displayValue:true,height:62,width:2,margin:8,fontSize:15});box.querySelector('.bcNote').textContent=(raw?'公司库存编码：'+raw:'扫描编码：'+scan)+(format==='UPC'?' · UPC-A':' · EAN-13')}catch(e){box.querySelector('.bcNote').textContent='无法生成条形码：'+e.message}}});
+ r.querySelectorAll('[data-jump]').forEach(b=>b.onclick=()=>jumpToDetection(b.dataset.jump,+b.dataset.photo));
+ r.querySelectorAll('[data-plus]').forEach(b=>b.onclick=()=>adjustQty(b.dataset.plus,1));r.querySelectorAll('[data-minus]').forEach(b=>b.onclick=()=>adjustQty(b.dataset.minus,-1));
+ r.querySelectorAll('[data-review]').forEach(b=>b.onclick=()=>{reviewStatus.set(b.dataset.review,{at:new Date().toISOString()});renderRows();saveState()});
+ r.querySelectorAll('[data-unreview]').forEach(b=>b.onclick=()=>{reviewStatus.delete(b.dataset.unreview);renderRows();saveState()});
+ r.querySelectorAll('[data-del]').forEach(b=>b.onclick=()=>{let c=b.dataset.del,targets=resultMode==='all'?photos:(current>=0?[photos[current]]:[]);targets.forEach(p=>{p.dets=p.dets.filter(d=>d.code!==c);if(p.manualAdj)delete p.manualAdj[c]});renderRows();renderMarks();renderThumbs()});
+ let total=[...counts.values()].reduce((a,b)=>a+b,0),unmatched=0,diffSkus=0;if(inventory.size){for(const [c,q] of counts){let iv=invFor(c);if(iv){if(q!==iv.inStore)diffSkus++}else unmatched+=q}}$('summary').textContent=(resultMode==='all'?`全部：${total} 件，${counts.size} 个不同条码，${photos.length} 张当前照片。`:(current>=0?`本图：${total} 件，${counts.size} 个不同条码。`:'尚未选择图片。'))+(inventory.size?` 数量差异 ${diffSkus} 个 SKU；未匹配 ${unmatched} 件。`:' 请先导入公司库存 Excel。');saveState()
 }
-function setQty(code,n){
- let targets=resultMode==='all'?photos:(current>=0?[photos[current]]:[]),cur=0;
- targets.forEach(p=>p.dets.forEach(d=>{if(d.code===code)cur++}));
- if(n<cur){
-  let remove=cur-n;
-  // Remove manual adjustments first; preserve real scan boxes whenever possible.
-  for(let pass=0;pass<2&&remove;pass++)
-   for(let pi=targets.length-1;pi>=0&&remove;pi--)
-    for(let di=targets[pi].dets.length-1;di>=0&&remove;di--){
-     let d=targets[pi].dets[di];
-     if(d.code===code && ((pass===0&&d.manual)||(pass===1&&!d.manual))){targets[pi].dets.splice(di,1);remove--}
-    }
- }else if(n>cur){
-  let target=current>=0?photos[current]:targets[0];if(!target)return;
-  for(let i=0;i<n-cur;i++)target.dets.push({code,manual:true,noMark:true});
- }
- renderRows();renderMarks();renderThumbs();
+function adjustQty(code,delta){
+ if(resultMode==='all'&&current<0){let n=Number(archivedCounts.get(code)||0);archivedCounts.set(code,Math.max(0,n+delta));if(archivedCounts.get(code)===0)archivedCounts.delete(code);renderRows();return}
+ if(current<0)return alert('请先选择一张图片，或切换到“全部汇总”后调整已保存数据。');
+ let p=photos[current];p.manualAdj=p.manualAdj||{};
+ if(delta>0)p.manualAdj[code]=(p.manualAdj[code]||0)+1;
+ else if((p.manualAdj[code]||0)>0)p.manualAdj[code]--;
+ else{let idx=p.dets.map(d=>d.code).lastIndexOf(code);if(idx>=0)p.dets.splice(idx,1)}
+ renderRows();renderMarks();renderThumbs()
 }
+function setQty(code,n){let targets=resultMode==='all'?photos:(current>=0?[photos[current]]:[]),loc=[];targets.forEach((p,pi)=>p.dets.forEach((d,di)=>{if(d.code===code)loc.push([pi,di])}));let cur=loc.length;if(n<cur){let remove=cur-n;for(let pi=targets.length-1;pi>=0&&remove;pi--)for(let di=targets[pi].dets.length-1;di>=0&&remove;di--)if(targets[pi].dets[di].code===code){targets[pi].dets.splice(di,1);remove--}}else if(n>cur){let target=current>=0?photos[current]:targets[0];if(!target)return;for(let i=0;i<n-cur;i++)target.dets.push({code,box:{x:20+i*12,y:40+i*12,width:150,height:60},manual:true})}renderRows();renderMarks();renderThumbs()}
 function normalizePos(pos){
   if(!pos)return null;
   const pts=[pos.topLeft,pos.topRight,pos.bottomRight,pos.bottomLeft].filter(Boolean);
@@ -183,10 +218,8 @@ async function scanPhoto(i){
     try{const arr=await z.readBarcodes(imageData,opts);addResults(arr,sx,sy,scale,label);return arr||[]}catch(e){say(`${label}: ERROR ${e&&e.message?e.message:e}`);return []}
   }
   // Diagnostic A: feed the original File/Blob directly to ZXing. This bypasses canvas/iPad pixel conversion.
-  if(p.file){
-    try{let a=await z.readBarcodes(p.file,{formats:['AllLinear'],tryHarder:true,maxNumberOfSymbols:128});addResults(a,0,0,1,'A 原始文件→AllLinear');}catch(e){say(`A 原始文件: ERROR ${e&&e.message?e.message:e}`)}
-    try{let a=await z.readBarcodes(p.file,{formats:['EAN13'],tryHarder:true,maxNumberOfSymbols:128});addResults(a,0,0,1,'B 原始文件→EAN13');}catch(e){say(`B 原始文件: ERROR ${e&&e.message?e.message:e}`)}
-  } else say('A/B: 无原始 File（旧会话图片），跳过');
+  // v3.6: gallery compatibility — use only normalized bitmap/canvas coordinates.
+  say('图库兼容：已统一使用标准化图片坐标扫描。');
   // Diagnostic C: full-resolution canvas ImageData, all 1D formats.
   let maxSide=Math.max(bmp.width,bmp.height), fullScale=Math.min(1,3000/maxSide);
   const fc=document.createElement('canvas');fc.width=Math.max(1,Math.round(bmp.width*fullScale));fc.height=Math.max(1,Math.round(bmp.height*fullScale));let fctx=fc.getContext('2d',{willReadFrequently:true});fctx.drawImage(bmp,0,0,fc.width,fc.height);
@@ -208,21 +241,13 @@ async function scanPhoto(i){
 }
 $('scanOne').onclick=async()=>{if(current<0)return alert('请先导入照片');$('status').textContent='正在扫描当前图片…';try{let n=await scanPhoto(current);$('status').textContent=`当前图片扫描完成：${n} 个 EAN-13 标记。请查看图片上的绿色框并手动修正。`;renderThumbs();showCurrent()}catch(e){$('status').textContent=e.message}}
 $('scanAll').onclick=async()=>{if(!photos.length)return alert('请先导入照片');try{for(let i=0;i<photos.length;i++){$('status').textContent=`正在扫描 ${i+1}/${photos.length}：${photos[i].name}`;await scanPhoto(i)}$('status').textContent=`全部扫描完成：${photos.length} 张。请逐张检查绿色标记。`;renderThumbs();showCurrent()}catch(e){$('status').textContent=e.message}}
-function addManualCode(code){let s=digits(code);if(s.length===12)s='0'+s;if(!validEAN13(s))return alert('请输入有效的 12 位 UPC 或 13 位 EAN-13');if(current<0)return alert('请先选择一张图片');let p=photos[current];p.dets.push({code:s,box:{x:p.bmp.width*.03,y:p.bmp.height*.03,width:p.bmp.width*.16,height:p.bmp.height*.06},manual:true});renderRows();renderMarks();renderThumbs();$('status').textContent='已手动补录 1 件，并计入当前图片和全部汇总。'}
+function addManualCode(code){let s=digits(code);if(s.length===12)s='0'+s;if(!validEAN13(s))return alert('请输入有效的 12 位 UPC 或 13 位 EAN-13');if(current<0)return alert('请先选择一张图片');let p=photos[current];p.manualAdj=p.manualAdj||{};p.manualAdj[s]=(p.manualAdj[s]||0)+1;renderRows();renderMarks();renderThumbs();$('status').textContent='已手动补录 1 件；不会生成假的图片标记。'}
 $('addCode').onclick=()=>{addManualCode($('manualCode').value.trim());$('manualCode').value=''};
 
 
-// v3.5.1 manual recovery workflow: camera scan, inventory search, custom keypad.
+// v3.6 manual recovery workflow: camera scan, inventory search, custom keypad.
 let manualStream=null, manualTimer=null, manualBusy=false;
-function addOneToCurrent(code){
-  let raw=digits(code), c=raw.length===12?'0'+raw:raw;
-  if(!validEAN13(c))return false;
-  if(current<0){alert('请先选择一张图片');return false}
-  let p=photos[current], n=p.dets.filter(d=>d.code===c).length;
-  p.dets.push({code:c,manual:true,noMark:true});
-  renderRows();renderMarks();renderThumbs();$('status').textContent=`补录成功：${c} +1`;
-  return true;
-}
+function addOneToCurrent(code){let raw=digits(code),c=raw.length===12?'0'+raw:raw;if(!validEAN13(c))return false;if(current<0){alert('请先选择一张图片');return false}let p=photos[current];p.manualAdj=p.manualAdj||{};p.manualAdj[c]=(p.manualAdj[c]||0)+1;renderRows();renderMarks();renderThumbs();$('status').textContent=`补录成功：${c} +1`;return true;}
 function openManual(){
   if(current<0)return alert('请先选择一张图片');
   $('manualModal').classList.remove('hidden'); switchManualTab('camera');
@@ -301,11 +326,17 @@ $('keypad').querySelectorAll('button').forEach(b=>b.onclick=()=>{
 });
 
 $('toggleDiag').onclick=()=>{diagVisible=!diagVisible;$('diag').style.display=diagVisible?'block':'none';if(diagVisible)$('diag').textContent=(current>=0&&photos[current]?(photos[current].diagLog||[]):[]).join('\n')||'当前图片还没有诊断记录。';$('toggleDiag').textContent=diagVisible?'隐藏诊断信息':'显示诊断信息'};
-$('filters').querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>{resultFilter=b.dataset.filter;$('filters').querySelectorAll('button').forEach(x=>x.className='btn '+(x===b?'':'secondary'));renderRows()});
+$('filters').querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>{resultFilter=b.dataset.filter;if(resultFilter==='pending')resultMode='all';$('filters').querySelectorAll('button').forEach(x=>x.className='btn '+(x===b?'':'secondary'));renderRows()});
 $('zoomIn').onclick=()=>{zoom=Math.min(3,zoom+.25);applyZoom()};$('zoomOut').onclick=()=>{zoom=Math.max(.5,zoom-.25);applyZoom()};$('viewCurrent').onclick=()=>{resultMode='current';renderRows()};$('viewAll').onclick=()=>{resultMode='all';renderRows()};
-$('clearAll').onclick=()=>{photos.forEach(p=>URL.revokeObjectURL(p.url));photos=[];current=-1;renderThumbs();showCurrent();$('status').textContent='已清空。'};
+$('clearAll').onclick=()=>{if(!confirm('清空当前照片？这些照片尚未归档的数据也会删除。若要保留盘点数量，请使用上方“清理照片，保留数据”。'))return;photos.forEach(p=>URL.revokeObjectURL(p.url));photos=[];current=-1;renderThumbs();showCurrent();$('status').textContent='已清空当前照片。'};
 $('copy').onclick=async()=>{let m=activeCounts(),s='Scanned EAN\tInventory EAN\tIn-Store Qty\tScanned Qty\tDifference\n'+[...m].map(([c,q])=>{let iv=invFor(c);return [c,iv?iv.raw:'',iv?iv.inStore:'',q,iv?q-iv.inStore:''].join('\t')}).join('\n');try{await navigator.clipboard.writeText(s);alert('已复制，可以粘贴到 Excel。')}catch{alert('浏览器不允许自动复制，请使用 CSV 导出。')}};
 $('csv').onclick=()=>{let m=activeCounts(),lines=['Scanned EAN,Inventory EAN,Article Description,Size/Dimension,In-Store Qty,Scanned Qty,Difference,Status'];for(const [c,q] of m){let iv=invFor(c),diff=iv?q-iv.inStore:'';let vals=[c,iv?iv.raw:'',iv?iv.desc:'',iv?iv.size:'',iv?iv.inStore:'',q,iv?diff:'',inventory.size?(iv?(diff===0?'MATCH':'QTY DIFFERENCE'):'NOT FOUND'):'NO INVENTORY'];lines.push(vals.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(','))}let a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+lines.join('\n')],{type:'text/csv;charset=utf-8'}));a.download=resultMode==='all'?'inventory_comparison_all.csv':`inventory_comparison_${current>=0?current+1:'current'}.csv`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)};renderRows();
 
-window.addEventListener('load',()=>{setTimeout(()=>{$('status').textContent=(window.ZXingWASM&&typeof ZXingWASM.readBarcodes==='function'&&window.XLSX)?'ZXing-WASM 与 Excel 读取组件已就绪。建议先导入公司库存表。':'组件尚未加载成功，请检查网络后刷新。';},700)});
+
+$('cleanupPhotos').onclick=archiveAndClearPhotos;
+$('exportState').onclick=()=>{let blob=new Blob([JSON.stringify(statePayload(),null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);let d=new Date().toISOString().slice(0,10);a.download=`Inventory_Count_${d}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)};
+$('importState').onchange=async e=>{let f=e.target.files&&e.target.files[0];if(!f)return;try{let st=JSON.parse(await f.text());if(!confirm('恢复这个盘点存档？当前已保存的盘点数据会被替换；当前照片不会自动删除。'))return;archivedCounts=new Map();reviewStatus=new Map();restoreStateObject(st,true);saveState()}catch(err){alert('无法读取盘点存档：'+err.message)}e.target.value=''};
+$('resetProgress').onclick=()=>{if(!confirm('确定重置整个盘点进度？\\n\\n这会删除本机保存的数量、确认状态和已恢复库存表。建议先导出盘点存档。'))return;localStorage.removeItem(SAVE_KEY);archivedCounts=new Map();reviewStatus=new Map();inventory=new Map();inventoryRows=0;inventoryTotal=0;inventoryFileName='';$('inventoryInfo').textContent='尚未导入库存表。';$('inventoryStats').innerHTML='';renderRows();updateProgress();$('status').textContent='盘点进度已重置。'};
+
+window.addEventListener('load',()=>{restoreLocal();setTimeout(()=>{$('status').textContent=(window.ZXingWASM&&typeof ZXingWASM.readBarcodes==='function'&&window.XLSX)?'ZXing-WASM 与 Excel 读取组件已就绪。建议先导入公司库存表。':'组件尚未加载成功，请检查网络后刷新。';},700)});
 </script></body></html>
